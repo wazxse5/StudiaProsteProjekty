@@ -3,7 +3,7 @@ project(StudiaProsteProjekty)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(KnapsackProblemGreedy KnapsackProblemGreedy.cpp )
-add_executable(SatisfiabilityProblem Sat.cpp)
-add_executable(KnapsackProblemDynamic KnapsackProblemDynamic.cpp)
-add_executable(EightQueenPuzzle EightQueenPuzzle.cpp)
+add_executable(KnapsackProblemGreedy src/KnapsackProblemGreedy.cpp)
+add_executable(SatisfiabilityProblem src/Sat.cpp)
+add_executable(KnapsackProblemDynamic src/KnapsackProblemDynamic.cpp)
+add_executable(EightQueenPuzzle src/EightQueenPuzzle.cpp)

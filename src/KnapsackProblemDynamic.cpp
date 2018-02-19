@@ -13,13 +13,9 @@ struct Item {
 };
 
 void printItems(vector<Item> *vec);
-
 int printMenu();
-
 bool loadData(int choice, int *n, int *c, vector<Item> *items);
-
 void solveKnapsack(int n, int c, vector<Item> *items);
-
 
 int main() {
     int choice;

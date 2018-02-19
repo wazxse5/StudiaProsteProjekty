@@ -33,11 +33,13 @@ int main() {
 
     // wyświetlenie menu, wczytanie liczby zmiennych
     choice = printMenu(&nbOfVariables, &path);
-    switch(choice) {
+    switch (choice) {
         case 1: // wczytanie funkcji
-            if(!readFunctionFromFile(function, values, path, &nbOfVariables)) return -1; break;
+            if (!readFunctionFromFile(function, values, path, &nbOfVariables)) return -1;
+            break;
         case 2: // wygenerowanie funkcji
-            generateFunction(function, values, nbOfVariables); break;
+            generateFunction(function, values, nbOfVariables);
+            break;
     }
 
 
@@ -46,18 +48,18 @@ int main() {
     cout << endl << endl;
 
 
-    cout << "WalkSAT: " ; // algorytm WalkSAT
+    cout << "WalkSAT: "; // algorytm WalkSAT
     start = chrono::system_clock::now();
     bool good = WalkSat(function, values);
     end = chrono::system_clock::now();
-    if(good) printTime(start, end);
+    if (good) printTime(start, end);
     else cout << "NIE" << endl;
 
     cout << "GSAT: "; // algorytm GSAT
     start = chrono::system_clock::now();
     good = GSat(function, values);
     end = chrono::system_clock::now();
-    if(good) printTime(start, end);
+    if (good) printTime(start, end);
     else cout << "NIE" << endl;
 
 
@@ -78,12 +80,12 @@ int printMenu(int *nbOfVariables, string *path) {
         cin >> choice;
     }
 
-    if(choice == 1) {
+    if (choice == 1) {
         cout << "Podaj ścieżkę do pliku z rozszerzeniem: ";
         cin >> *path;
     }
 
-    if(choice == 2) {
+    if (choice == 2) {
         // dopóki nie zostanie podana prawidłowa liczba
         while (temp < 1) {
             cout << "Podaj liczbę zmiennych: ";
@@ -159,12 +161,12 @@ void printFunction(vector<vector<int>> &function, vector<bool> &values, string t
 }
 
 void printTime(chrono::time_point<chrono::system_clock> start, chrono::time_point<chrono::system_clock> end) {
-    double time_elapsed = chrono::duration_cast<chrono::microseconds>(end-start).count();
+    double time_elapsed = chrono::duration_cast<chrono::microseconds>(end - start).count();
     cout << endl << "   czas: ";
-    if(time_elapsed < 1000) cout << time_elapsed << " mikrosekund";
+    if (time_elapsed < 1000) cout << time_elapsed << " mikrosekund";
     else {
         time_elapsed /= 1000;
-        if(time_elapsed < 1000) cout << time_elapsed << " milisekund";
+        if (time_elapsed < 1000) cout << time_elapsed << " milisekund";
         else {
             time_elapsed /= 1000;
             cout << time_elapsed << " sekund";
@@ -223,10 +225,10 @@ void generateFunction(vector<vector<int>> &function, vector<bool> &values, int n
         // jeżeli żadna ze zmiennych nie występuje w nawiasie...
         bool empty = true;
         for (int j = 0; j < nbOfVariables; ++j) {
-            if(function.at(i).at(j) == 0 || function.at(i).at(j) == 1) empty = false;
+            if (function.at(i).at(j) == 0 || function.at(i).at(j) == 1) empty = false;
         }
         // ... to ustawiam że pierwsza zmienna występuje w nawiasie nie zanegowana
-        if(empty) {
+        if (empty) {
             function.at(i).at(0) = 0;
         }
     }
@@ -340,13 +342,13 @@ bool GSat(vector<vector<int>> &function, vector<bool> values) {
             // odnalezienie minimum
             int min = vecFlsCls.at(0);
             for (int m = 1; m < vecFlsCls.size(); ++m) {
-                if(vecFlsCls.at(m) < min) min = vecFlsCls.at(m);
+                if (vecFlsCls.at(m) < min) min = vecFlsCls.at(m);
 
             }
             // policzenie wszystkich minimów, (może być kilka bo mogą mieć tę samą wartość)
             vector<int> indxOfMins; // tablica indeksów tych zmiennych które są minimami
             for (int n = 0; n < vecFlsCls.size(); ++n) {
-                if(vecFlsCls.at(n) == min) indxOfMins.push_back(n);
+                if (vecFlsCls.at(n) == min) indxOfMins.push_back(n);
             }
             // wyloswanie zmiennej do zanegowania
             int varToNegate = indxOfMins.at(rand() % indxOfMins.size());

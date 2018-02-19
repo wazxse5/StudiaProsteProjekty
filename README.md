@@ -1,13 +1,14 @@
 # StudiaProsteProjekty
+Some of my simple projects from studies.
 
-### EightQueenPuzzle
+#### EightQueenPuzzle
 Recursive solution of typical eight queen puzzle problem. The size of problem (number of queens) can be entered by user.
 
-### KnapsackProblemDynamic
+#### KnapsackProblemDynamic
 This program can solve knapsack problem using dynamic algorihm.
 
-### KnapsackProblemGreedy
+#### KnapsackProblemGreedy
 As above but using greedy algorithm.
 
-### Sat
+#### Sat
 Satisfiability problem, comparison of WalkSat and GSat algorithms
